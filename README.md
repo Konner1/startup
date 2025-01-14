@@ -1,9 +1,10 @@
 # Your startup name here
+**Lib Buddies**
 
 [My Notes](notes.md)
 
-My app is a fitness tracker (I think)
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+I will be creating a website that allows you to see when people are in the library so you can know if your friends are there to study with. This allows people who aren't close enough to share their location with each other to see when others are studying. The will push a button that will send to everyone in their "buddies" list to tell them that they are now studying at the library. When they leave they will simply just click "leaving" to notify their buddies that they are not longer there. 
+
 
 
 > [!NOTE]
@@ -20,14 +21,14 @@ A brief description of the application here. Lorem ipsum dolor sit amet, consect
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
+- [x] A concise and compelling elevator pitch
 - [ ] Description of key features
 - [ ] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Studying sucks. Studying alone is worse. It's hard to study at home and annoying to call 50 people to see if they also want to cry in the library. Sharing your location can be a little too personal so what can you do? Use Lib Buddies to send a signal to all of your best or passive friends so that you're never alone in the library! With the click of a button you can notify everyone you want that you are in need of some company at the library. Want a study buddy? A wingman to go talk to that special someone on the second floor? Lib Buddies can help. 
 
 ### Design
 
@@ -44,20 +45,24 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Secure login over HTTP
+- Buddy list (think friends on Facebook)
+- Add/Remove buddy button
+- Buddies are notified of user location when at library
+- Library announcement button
+- Real time notifications of buddies in the library
+- Friends are stored permanatly until deleted
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Uses HTML structure for application. There will be a login, friends search list, and library button page.
+- **CSS** - Application styleing that works with different screen sizes and uses good color choice.
+- **React** - Provides login, library alert button, adding/removing "buddies", rounting and componants.
+- **Service** - Backend service for: login, searching buddies, finding buddies, library status
+- **DB/Login** - Stores users, stores users in library/out of library. Credentials stored in database.
+- **WebSocket** - As each user presses the library alert button- their buddies are notified. 
 
 ## 🚀 AWS deliverable
 
