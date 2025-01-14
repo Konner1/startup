@@ -60,7 +60,7 @@ I am going to use the required technologies in the following ways.
 - **HTML** - Uses HTML structure for application. There will be a login, friends search list, and library button page.
 - **CSS** - Application styleing that works with different screen sizes and uses good color choice.
 - **React** - Provides login, library alert button, adding/removing "buddies", rounting and componants.
-- **Service** - Backend service for: login, searching buddies, finding buddies, library status
+- **Service** - Backend service for: login, searching buddies and finding buddies, third party call to location services.
 - **DB/Login** - Stores users, stores users in library/out of library. Credentials stored in database.
 - **WebSocket** - As each user presses the library alert button- their buddies are notified. 
 
