@@ -1,5 +1,5 @@
-# Your startup name here
-**Lib Buddies**
+# Lib Buddies
+
 
 [My Notes](notes.md)
 
@@ -20,11 +20,11 @@ I will be creating a website that allows you to see when people are in the libra
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
+- [x] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] Description of key features
+- [x] Description of how you will use each technology
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
@@ -36,14 +36,8 @@ Studying sucks. Studying alone is worse. It's hard to study at home and annoying
 ![Design2](IMG_2847.png)
 ![Design3](IMG_2848.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The top image shows how the login page will look. It will be a simple design with just the app title and a username and password section. The second picture is the main page which will feature the user's profile picture and a button for if the user is in the library or not. Underneath it will have a list of people who are in the library. The last page will be the search page which will allow the user to find and remove buddies. 
 
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
 
 ### Key features
 
