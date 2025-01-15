@@ -1,6 +1,6 @@
 # CS 260 Notes
 
-[My startup](https://simon.cs260.click)
+[Lib Buddies startup](https://github.com/Konner1/startup)
 
 ## Helpful links
 
