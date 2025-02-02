@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
+/* aside {
+    float: right;
+    padding: 3em;
+    margin: 0.5em;
+    border: black solid thin;
+  } */
+
+  /* @media (orientation: portrait) {
+    div {
+      transform: rotate(270deg);
+    }
+  } */
 
 body {
     background-color:antiquewhite; 
@@ -25,7 +37,7 @@ span {
 
 
 form {
-    background: rgb(143, 136, 182);
+    background: #387FA1;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -33,6 +45,7 @@ form {
     flex-direction: column;
     align-items: center;
     font-weight: bold;
+    font-size: large;
 }
 
 input {
