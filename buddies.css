@@ -8,3 +8,26 @@ form {
     top: 10px;
     left: 10px;
 }
+
+form button {
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: #87CEEB;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+button {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border-color: black;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

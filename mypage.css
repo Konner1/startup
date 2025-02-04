@@ -17,6 +17,9 @@ form {
 }
 
 form button {
+    margin-top: 10px;
+    margin-right: 10px;
+    text-align: right;
     background-color: #87CEEB ;
     color: white;
     padding: 10px 15px;
