@@ -1,3 +1,21 @@
+/* Style for the header banner */
+header {
+    background-color: rgb(152, 95, 69); /* Green background */
+    color: white; /* White text */
+    text-align: left; /* Center the text */
+    padding: 20px; /* Add some padding around the text */
+    font-size: 2rem; /* Increase the font size */
+    font-weight: bold; /* Make the font bold */
+    position: fixed; /* Keep it fixed at the top of the page */
+    top: 0; /* Align to the top */
+    width: 100%; /* Make the header span the full width of the page */
+    z-index: -1; /* Ensure it sits on top of other elements */
+    height: 20px;
+}
+
+
+
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -29,7 +47,7 @@ form button {
     border-radius: 5px;
 }
 
-img {
+.profile {
     display: block;
     margin: 20px auto;
     width: 200px;
@@ -71,7 +89,7 @@ h3 {
 
 
 ul {
-    margin-top: 0px;
+    margin-top: -20px;
     list-style-type: none;
     padding: 0;
     max-height: 200px;
@@ -93,6 +111,19 @@ li {
     border-radius: 5px;
     font-size: 16px;
     background-color: rgb(254, 254, 254);
+}
+
+.list {
+    margin-top: 0px;
+    background-image: url("HBLL_pic.png");
+    background-size: cover; 
+    background-position: center; 
+    padding: 20px;
+    margin: 0px auto; 
+    width: 100%; 
+    border-radius: 5px;
+    position: relative; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 input[type="checkbox"] {
