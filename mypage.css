@@ -1,14 +1,14 @@
 /* Style for the header banner */
 header {
-    background-color: rgb(152, 95, 69); /* Green background */
-    color: white; /* White text */
-    text-align: left; /* Center the text */
-    padding: 20px; /* Add some padding around the text */
-    font-size: 2rem; /* Increase the font size */
-    font-weight: bold; /* Make the font bold */
-    position: fixed; /* Keep it fixed at the top of the page */
-    top: 0; /* Align to the top */
-    width: 100%; /* Make the header span the full width of the page */
+    background-color: rgb(152, 95, 69); 
+    color: white; 
+    text-align: left;
+    padding: 20px; 
+    font-size: 2rem; 
+    font-weight: bold; 
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
     /* z-index: -1; */
     height: 20px;
 }
@@ -19,9 +19,9 @@ header {
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin: 0; /* Remove any default margin */
-    padding: 0; /* Remove any padding */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    margin: 0; 
+    padding: 0; 
+    overflow-x: hidden; 
 }
 
 
