@@ -35,3 +35,20 @@ img {
     object-fit: cover;
 }
 
+div button {
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+div button:first-child {
+    background-color: green;
+}
+
+div button:last-child {
+    background-color: red;
+}
