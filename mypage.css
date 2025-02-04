@@ -5,7 +5,9 @@ body {
 
 
 h1 {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
+    color: #87CEEB; 
+    font-family: 'Poppins', sans-serif;
 }
 
 form {
@@ -46,9 +48,50 @@ div button {
 }
 
 div button:first-child {
-    background-color: green;
+    background-color: rgb(81, 130, 149);
 }
 
 div button:last-child {
-    background-color: red;
+    background-color: rgb(176, 98, 98);
+}
+
+h3 {
+    width: 100%;
+    border: 3px solid black;
+    padding: 20px;
+    margin-top: 20px;
+    font-size: 24px;
+    margin-bottom: 0px;
+    color: white;
+    background-color: rgb(152, 95, 69);
+}
+
+
+ul {
+    margin-top: 0px;
+    list-style-type: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid black;
+    display: inline-block;
+    text-align: left;
+    width: 500px;
+    background-color: rgb(81, 130, 149);
+    border-radius: 5px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(97, 95, 95);
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: rgb(254, 254, 254);
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
 }
