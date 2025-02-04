@@ -9,7 +9,7 @@ header {
     position: fixed; /* Keep it fixed at the top of the page */
     top: 0; /* Align to the top */
     width: 100%; /* Make the header span the full width of the page */
-    z-index: -1; /* Ensure it sits on top of other elements */
+    /* z-index: -1; */
     height: 20px;
 }
 
@@ -19,6 +19,9 @@ header {
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any padding */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 
@@ -78,7 +81,8 @@ div button:last-child {
 
 h3 {
     width: 100%;
-    border: 3px solid black;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
     padding: 20px;
     margin-top: 20px;
     font-size: 24px;
@@ -92,7 +96,7 @@ ul {
     margin-top: -20px;
     list-style-type: none;
     padding: 0;
-    max-height: 200px;
+    max-height: 250px;
     overflow-y: auto;
     border: 1px solid black;
     display: inline-block;
