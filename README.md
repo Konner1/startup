@@ -87,12 +87,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - I added css styles to the header, footer, and the main body content. I used classes to identify most of these but they are all there. 
+- [x] **Navigation elements** - I have my login natigate to my main page which has a navigation bar.
+- [x] **Responsive to window resizing** - All of my windows shrink or change so that they are responsive. My main page shrinks down to fit everything it can with some reordering, the login and buddy pages just reorder the elements.
+- [x] **Application elements** - Yea I did this. I used the names and stuff that you were supposed to so I could edit every part of the website.
+- [x] **Application text content** - The text is all edited and the font has changed so this one is complete.
+- [x] **Application images** - This one was a headache but I got it to look cool! I put an image in a circle and made two other images the backgrounds.
 
 ## 🚀 React part 1: Routing deliverable
 
