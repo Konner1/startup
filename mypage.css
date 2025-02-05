@@ -1,41 +1,51 @@
 body {
     background-color:antiquewhite; 
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     text-align: center;
     font-family: Arial, sans-serif;
-    overflow: scroll;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
+
 
 
 h1 {
     margin-bottom: 0px;
-    color: #87CEEB; 
+    color: white; 
     font-family: 'Poppins', sans-serif;
+    margin-top: 0px;
+    text-align: left;
+    margin-left: 10px;
 }
 
 
 .nav {
     display: flex;
-    justify-content: flex-end;  /* Aligns items to the right */
-    gap: 10px;  /* Adds space between buttons */
-    margin-top: 10px; /* Optional: Adds space from the top */
+    gap: 10px; 
+    align-items: center;
+    text-align: right;
+
+    width: 100%;
+    border-bottom: 3px solid black;
+    padding: 20px;
+    font-size: 24px;
+    margin-bottom: 0px;
+    color: white;
+    background-color: rgb(81, 130, 149);
+}
 }
 
 form {
-    margin: 0;  /* Removes default margin on forms */
+    margin: 0;
 }
-/* form {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-} */
+
 
 form button {
-    margin-top: 10px;
+    margin-top: 300px;
     margin-right: 10px;
     text-align: right;
     background-color: #87CEEB ;
