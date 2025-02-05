@@ -1,17 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
-aside {
-    float: right;
-    padding: 3em;
-    margin: 0.5em;
-    border: black solid thin;
-  } 
 
-@media (orientation: portrait) {
-    div {
-      transform: rotate(270deg);
-    }
-  }
 
 body {
     background-color:rgb(245, 237, 226); 
