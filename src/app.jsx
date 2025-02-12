@@ -1,10 +1,18 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
+import {Login} from './login/login'
+import {Library} from './library/library'
+
 
 export default function App() {
-    const [loginState, setloginset] = React.useState(false)
-    const content = <div className="body bg-dark text-light">App will display here</div>;
+    const [loginState, setloginState] = React.useState(false)
+    let content = <div className="body bg-dark text-light">App will display here</div>;
+    if (loginState) {
+        content = <Library />;
+    } else{
+        content = <Login setLogin = {setloginState} />
+    }
     return content
 }
   

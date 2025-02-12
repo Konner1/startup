@@ -1,4 +1,5 @@
 import './buddies.css';
+import React from 'react';
 
 export function Buddies() {
   return (

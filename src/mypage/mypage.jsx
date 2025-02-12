@@ -1,4 +1,5 @@
 import './mypage.css';
+import React from 'react';
 
 export function MyPage() {
   return (
