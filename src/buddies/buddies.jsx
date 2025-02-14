@@ -1,21 +1,29 @@
+
 import './buddies.css';
 import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export function Buddies() {
+  const navigate = useNavigate();  // Initialize the useNavigate hook
+
+  const handleLogout = () => {
+    navigate('/');  // Navigate to the Login page when logging out
+  };
+
   return (
     <main className="container-fluid bg-secondary text-center">
       <header>
         <div className="nav">
           <h1>Lib Buddies</h1>
-          <form action="index.html" method="get">
-            <button>Login</button>
-          </form>
-          <form action="mypage.html" method="get">
+          {/* NavLink buttons */}
+          <NavLink to="/page">
             <button>My Page</button>
-          </form>
-          <form action="buddiespage.html" method="get">
+          </NavLink>
+          <NavLink to="/buddies">
             <button>Buddies</button>
-          </form>
+          </NavLink>
+          {/* Logout button */}
+          {/* <button onClick={handleLogout}>Logout</button> */}
         </div>
       </header>
 
@@ -42,3 +50,6 @@ export function Buddies() {
     </main>
   );
 }
+
+
+

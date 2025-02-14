@@ -8,19 +8,20 @@ body {
     text-align: center;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
-    margin: 0;
     padding: 0;
+    padding-top: 100px;
 }
 
 
-h1 {
+
+.theNavH {
     margin-bottom: 0px;
-    color: white; 
+    color: rgb(255, 255, 255); 
     font-family: 'Poppins', sans-serif;
     margin-top: 0px;
     text-align: left;
     margin-left: 10px;
-    font-size: 6vw;
+    font-size: 2.5rem;
 }
 
 
@@ -30,14 +31,22 @@ h1 {
     align-items: center;
     text-align: right;
     font-size: 2vw;
+    justify-content: space-between;
+    top:0;
+    left:0;
+    position: relative;
 
-    width: 100%;
+    width: 100vw;
+    max-width: 100%;
     border-bottom: 3px solid black;
-    padding: 20px;
+    padding: 1rem 2rem;
     font-size: 24px;
     margin-bottom: 0px;
+    margin-top: 3rem;
     color: white;
     background-color: rgb(81, 130, 149);
+    flex-wrap: wrap;
+    z-index: 9999;
 }
 
 
@@ -53,7 +62,7 @@ form button {
     text-align: right;
     background-color: #87CEEB ;
     color: white;
-    padding: 10px 15px;
+    padding: 5px 5px;
     border: none;
     cursor: pointer;
     font-size: 14px;
@@ -80,7 +89,7 @@ div button {
     cursor: pointer;
     color: white;
     border-radius: 5px;
-    margin: 5px;
+    margin: 0px;
     width: auto;
     font-size: 1.5vw;
 }
@@ -139,13 +148,14 @@ li {
     background-image: url("HBLL_pic.png");
     background-size: cover; 
     background-position: center; 
-    padding: 20px;
+    padding: 2rem;
     margin: 0px auto; 
-    width: 100%; 
+    width: 100vw; 
+    max-width: 100%;
+    min-height: 100%;
     border-radius: 5px;
     position: relative; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    /* .list is a class of the footer element */
 }
 
 input[type="checkbox"] {
