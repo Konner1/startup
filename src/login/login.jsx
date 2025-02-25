@@ -1,4 +1,3 @@
-
 import './login.css';
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +6,7 @@ export function Login({setLogin}) {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = () => {
     const storedUser = localStorage.getItem('username');
@@ -17,19 +16,19 @@ export function Login({setLogin}) {
       setLogin(true);
       navigate('/page');  // Navigate to MyPage after login
     } else {
-
+      setErrorMessage('Invalid username or password');
     }
   };
 
   const handleRegister = () => {
     if (!username || !password) {
-
+      setErrorMessage('Please enter a username and password');
       return;
     }
     
     localStorage.setItem('username', username);
     localStorage.setItem('password', password);
-
+    setErrorMessage('Account created! You can now log in.');
   };
 
 
@@ -57,7 +56,7 @@ export function Login({setLogin}) {
             onChange={(e)=> setPassword(e.target.value)}
             />
 
-
+          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
           <div className="inLine">
               <button type="button" onClick={handleLogin}>Login</button> 
