@@ -2,7 +2,7 @@ import './mypage.css';
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-export function MyPage() {
+export function MyPage({setLoginState}) {
   const navigate = useNavigate();
   const [loggedInUser, setLoggedInUser] = useState('');
   const [buddiesList, setBuddiesList] = useState([]);
@@ -21,7 +21,8 @@ export function MyPage() {
 
   const handleLogout = () => {
     localStorage.removeItem('loggedInUser');
-    navigate('/');  // Navigate to the Login page when logging out
+    setLoginState(false);  // Update login state
+    navigate('/');  // Redirect to login page
   };
 
   const toggleLibraryStatus = (status) => {
@@ -54,33 +55,31 @@ export function MyPage() {
         {/* <p>My name is Konner Kinghorn and I'm studying Computer Science</p> */}
 
         <div className="library-status">
-          <button>In Library</button>
-          <button>Out</button>
+          <button
+            className={inLibrary ? 'active' : ''}
+            onClick={() => toggleLibraryStatus(true)}
+          >
+            In Library
+          </button>
+          <button
+            className="out-btn"
+            onClick={() => toggleLibraryStatus(false)}
+          >
+            Out
+          </button>
         </div>
+
         <h3>Buddies In Library</h3>
 
         <footer className="list">
           <ul>
-            <li>
-              <label>
-                <input type="checkbox" /> Jane Doe
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="checkbox" /> Alex Smith
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="checkbox" /> John Mark
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="checkbox" /> Kyle Connors
-              </label>
-            </li>
+            {buddiesList.map((buddy, index) => (
+              <li key={index}>
+                <label>
+                  <input type="checkbox" checked readOnly /> {buddy}
+                </label>
+              </li>
+            ))}
           </ul>
         </footer>
       </div>

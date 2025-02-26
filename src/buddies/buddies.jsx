@@ -3,7 +3,7 @@ import './buddies.css';
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-export function Buddies() {
+export function Buddies({setLoginState}) {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,10 +13,11 @@ export function Buddies() {
 
   useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
-    console.log('Stored Users:', storedUsers);
     setAllUsers(storedUsers);
+  
+    const storedBuddies = JSON.parse(localStorage.getItem('buddiesList')) || []; 
+    setBuddiesList(storedBuddies); // Load buddies from storage
   }, []);
-
   const handleLogout = () => {
     navigate('/');  
   };
@@ -26,15 +27,18 @@ export function Buddies() {
   };
 
   const handleAddBuddy = (buddyName) => {
-    if (!buddiesList.includes(buddyName)) {
-      setBuddiesList([...buddiesList, buddyName]);
-    }
+    const updatedBuddies = [...buddiesList, buddyName];
+  
+    setBuddiesList(updatedBuddies);
+    localStorage.setItem('buddiesList', JSON.stringify(updatedBuddies)); // Store in localStorage
     setShowModal(false);
   };
 
   const filteredUsers = allUsers.filter((user) =>
     user.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  
 
   return (
     <main className="container-fluid bg-secondary text-center">
