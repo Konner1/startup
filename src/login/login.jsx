@@ -13,8 +13,9 @@ export function Login({setLogin}) {
     const storedPass = localStorage.getItem('password');
 
     if (username === storedUser && password === storedPass) {
+      localStorage.setItem('loggedInUser', username);
       setLogin(true);
-      navigate('/page');  // Navigate to MyPage after login
+      navigate('/page');
     } else {
       setErrorMessage('Invalid username or password');
     }

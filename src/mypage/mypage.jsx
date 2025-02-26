@@ -1,12 +1,20 @@
-
 import './mypage.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 export function MyPage() {
-  const navigate = useNavigate();  // Initialize the useNavigate hook
+  const navigate = useNavigate();
+  const [loggedInUser, setLoggedInUser] = useState('');
+
+  useEffect(() => {
+    const user = localStorage.getItem('loggedInUser');
+    if (user) {
+      setLoggedInUser(user);
+    }
+  }, []);
 
   const handleLogout = () => {
+    localStorage.removeItem('loggedInUser');
     navigate('/');  // Navigate to the Login page when logging out
   };
 
@@ -24,7 +32,7 @@ export function MyPage() {
       </header>
 
       <div className="profile-info">
-        <h2>Konner Kinghorn</h2>
+      <h2>{loggedInUser || 'User'}</h2>
         <img
           className="profile"
           src="2532FCBF-5F2E-469F-899D-4D064E234819_1_105_c.jpeg"
