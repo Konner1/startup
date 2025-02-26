@@ -1,13 +1,18 @@
 
 import './buddies.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 export function Buddies() {
-  const navigate = useNavigate();  // Initialize the useNavigate hook
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [allUsers, setAllUsers] = useState([]);
+  const [buddiesList, setBuddiesList] = useState([]);
+
 
   const handleLogout = () => {
-    navigate('/');  // Navigate to the Login page when logging out
+    navigate('/');  
   };
 
   return (
@@ -28,20 +33,16 @@ export function Buddies() {
       </header>
 
       <h1>My Buddies</h1>
-      <button className="search">🔍 Search</button>
+      <button className="search" onClick={handleSearchClick}>🔍 Search </button>
       <br />
       <br />
 
       <ul>
-        <li>
-          John Hans <input type="radio" name="user" />
-        </li>
-        <li>
-          John Bolek <input type="radio" name="user" />
-        </li>
-        <li>
-          John Jackson <input type="radio" name="user" />
-        </li>
+        {buddiesList.map((buddy, index) => (
+            <li key={index}>
+              {buddy} <input type="radio" name="user" />
+            </li>
+          ))}
       </ul>
 
       <footer>
