@@ -68,6 +68,27 @@ export function Buddies() {
       <footer>
         <p>Lib Buddies</p>
       </footer>
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Select a Buddy</h2>
+            <input
+              type="text"
+              placeholder="Search for a buddy..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <ul>
+              {filteredUsers.map((user, index) => (
+                <li key={index} onClick={() => handleAddBuddy(user)}>
+                  {user}
+                </li>
+              ))}
+            </ul>
+            <button onClick={() => setShowModal(false)}>Close</button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

@@ -29,6 +29,11 @@ export function Login({setLogin}) {
     
     localStorage.setItem('username', username);
     localStorage.setItem('password', password);
+    const existingUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
+    if (!existingUsers.includes(username)) {
+      existingUsers.push(username);
+      localStorage.setItem('allUsers', JSON.stringify(existingUsers));
+    }
     setErrorMessage('Account created! You can now log in.');
   };
 
