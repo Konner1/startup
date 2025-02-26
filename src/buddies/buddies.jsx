@@ -11,6 +11,11 @@ export function Buddies() {
   const [buddiesList, setBuddiesList] = useState([]);
 
 
+  useEffect(() => {
+    const storedUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
+    setAllUsers(storedUsers);
+  }, []);
+  
   const handleLogout = () => {
     navigate('/');  
   };
