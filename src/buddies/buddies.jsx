@@ -49,7 +49,7 @@ export function Buddies() {
             <button>Buddies</button>
           </NavLink>
           {/* Logout button */}
-          {/* <button onClick={handleLogout}>Logout</button> */}
+          <button onClick={handleLogout}>Logout</button>
         </div>
       </header>
 

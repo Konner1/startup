@@ -5,17 +5,28 @@ import { NavLink, useNavigate } from 'react-router-dom';
 export function MyPage() {
   const navigate = useNavigate();
   const [loggedInUser, setLoggedInUser] = useState('');
+  const [buddiesList, setBuddiesList] = useState([]);
+  const [inLibrary, setInLibrary] = useState(false);
 
   useEffect(() => {
     const user = localStorage.getItem('loggedInUser');
-    if (user) {
-      setLoggedInUser(user);
-    }
+    if (user) setLoggedInUser(user);
+
+    const storedBuddies = JSON.parse(localStorage.getItem('buddiesList')) || [];
+    setBuddiesList(storedBuddies);
+
+    const storedStatus = JSON.parse(localStorage.getItem('inLibrary'));
+    if (storedStatus !== null) setInLibrary(storedStatus);
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('loggedInUser');
     navigate('/');  // Navigate to the Login page when logging out
+  };
+
+  const toggleLibraryStatus = (status) => {
+    setInLibrary(status);
+    localStorage.setItem('inLibrary', JSON.stringify(status));
   };
 
   return (
@@ -28,19 +39,19 @@ export function MyPage() {
         <NavLink to="/buddies">
           <button>Buddies</button>
         </NavLink>
-        {/* <button onClick={handleLogout}>Logout</button> */}
+        <button onClick={handleLogout}>Logout</button>
       </header>
 
       <div className="profile-info">
       <h2>{loggedInUser || 'User'}</h2>
         <img
           className="profile"
-          src="2532FCBF-5F2E-469F-899D-4D064E234819_1_105_c.jpeg"
+          src={`https://picsum.photos/150/100?random=${Math.random()}`}
           alt="profile pic"
           width="150"
           height="100"
         />
-        <p>My name is Konner Kinghorn and I'm studying Computer Science</p>
+        {/* <p>My name is Konner Kinghorn and I'm studying Computer Science</p> */}
 
         <div className="library-status">
           <button>In Library</button>
