@@ -15,10 +15,25 @@ export function Buddies() {
     const storedUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
     setAllUsers(storedUsers);
   }, []);
-  
+
   const handleLogout = () => {
     navigate('/');  
   };
+
+  const handleSearchClick = () => {
+    setShowModal(true);
+  };
+
+  const handleAddBuddy = (buddyName) => {
+    if (!buddiesList.includes(buddyName)) {
+      setBuddiesList([...buddiesList, buddyName]);
+    }
+    setShowModal(false);
+  };
+
+  const filteredUsers = allUsers.filter((user) =>
+    user.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <main className="container-fluid bg-secondary text-center">
