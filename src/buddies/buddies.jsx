@@ -13,6 +13,7 @@ export function Buddies() {
 
   useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
+    console.log('Stored Users:', storedUsers);
     setAllUsers(storedUsers);
   }, []);
 
@@ -79,11 +80,15 @@ export function Buddies() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <ul>
-              {filteredUsers.map((user, index) => (
-                <li key={index} onClick={() => handleAddBuddy(user)}>
-                  {user}
-                </li>
-              ))}
+              {filteredUsers.length > 0 ? (
+                filteredUsers.map((user, index) => (
+                  <li key={index} onClick={() => handleAddBuddy(user)}>
+                    {user}
+                  </li>
+                ))
+              ) : (
+                <li>No users found</li>
+              )}
             </ul>
             <button onClick={() => setShowModal(false)}>Close</button>
           </div>
