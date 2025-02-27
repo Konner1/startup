@@ -1,5 +1,5 @@
 import './login.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function Login({setLogin}) {
@@ -8,35 +8,46 @@ export function Login({setLogin}) {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleLogin = () => {
-    const storedUser = localStorage.getItem('username');
-    const storedPass = localStorage.getItem('password');
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+      setLogin(true);
+      navigate('/page');
+    }
+  }, [setLogin, navigate]);
 
-    if (username === storedUser && password === storedPass) {
-      localStorage.setItem('loggedInUser', username);
+  const handleLogin = () => {
+    const users = JSON.parse(localStorage.getItem('allUsers')) || [];
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+      localStorage.setItem('loggedInUser', username); // Store active session
       setLogin(true);
       navigate('/page');
     } else {
       setErrorMessage('Invalid username or password');
     }
   };
-
   const handleRegister = () => {
     if (!username || !password) {
       setErrorMessage('Please enter a username and password');
       return;
     }
-    
-    localStorage.setItem('username', username);
-    localStorage.setItem('password', password);
-    const existingUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
-    if (!existingUsers.includes(username)) {
-      existingUsers.push(username);
-      localStorage.setItem('allUsers', JSON.stringify(existingUsers));
+
+    let users = JSON.parse(localStorage.getItem('allUsers')) || [];
+
+    // Check if username already exists
+    if (users.some(u => u.username === username)) {
+      setErrorMessage('Username already exists! Please choose another.');
+      return;
     }
+
+    // Add new user to the array
+    users.push({ username, password });
+    localStorage.setItem('allUsers', JSON.stringify(users));
+
     setErrorMessage('Account created! You can now log in.');
   };
-
 
 
   return (
