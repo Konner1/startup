@@ -27,11 +27,11 @@ body {
 
 .nav {
     display: flex;
-    gap: 10px; 
+    gap: 5px; 
     align-items: center;
     text-align: right;
     font-size: 2vw;
-    justify-content: space-between;
+    justify-content: center;
     top:0;
     left:0;
     position: relative;
@@ -89,7 +89,7 @@ div button {
     cursor: pointer;
     color: white;
     border-radius: 5px;
-    margin: 0px;
+    margin: 0;
     width: auto;
     font-size: 1.5vw;
 }

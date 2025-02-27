@@ -26,13 +26,15 @@ export function Buddies({setLoginState}) {
     setShowModal(true);
   };
 
-  const handleAddBuddy = (buddyName) => {
-    const updatedBuddies = [...buddiesList, buddyName];
-  
+  const handleToggleBuddy = (buddyName) => {
+    const updatedBuddies = buddiesList.includes(buddyName)
+      ? buddiesList.filter(buddy => buddy !== buddyName) // Remove buddy if already selected
+      : [...buddiesList, buddyName]; // Add buddy if not selected
+
     setBuddiesList(updatedBuddies);
-    localStorage.setItem('buddiesList', JSON.stringify(updatedBuddies)); // Store in localStorage
-    setShowModal(false);
+    localStorage.setItem('buddiesList', JSON.stringify(updatedBuddies));
   };
+
 
   const filteredUsers = allUsers.filter((user) =>
     user.toLowerCase().includes(searchTerm.toLowerCase())
@@ -64,16 +66,21 @@ export function Buddies({setLoginState}) {
 
       <ul>
         {buddiesList.map((buddy, index) => (
-            <li key={index}>
-              {buddy} <input type="radio" name="user" />
-            </li>
-          ))}
+          <li key={index}>
+            {buddy} 
+            <input 
+              type="checkbox" 
+              checked={buddiesList.includes(buddy)} 
+              onChange={() => handleToggleBuddy(buddy)} 
+            />
+          </li>
+        ))}
       </ul>
 
       <footer>
         <p>Lib Buddies</p>
       </footer>
-      {showModal && (
+{showModal && (
         <div className="modal">
           <div className="modal-content">
             <h2>Select a Buddy</h2>
@@ -86,7 +93,12 @@ export function Buddies({setLoginState}) {
             <ul>
               {filteredUsers.length > 0 ? (
                 filteredUsers.map((user, index) => (
-                  <li key={index} onClick={() => handleAddBuddy(user)}>
+                  <li key={index} onClick={() => handleToggleBuddy(user)}>
+                    <input 
+                      type="checkbox" 
+                      checked={buddiesList.includes(user)} 
+                      readOnly 
+                    />
                     {user}
                   </li>
                 ))
