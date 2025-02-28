@@ -145,7 +145,7 @@ li {
 
 .list {
     margin-top: 0px;
-    background-image: url("HBLL_pic.png");
+    background-image: url("/HBLL_pic.png");
     background-size: cover; 
     background-position: center; 
     padding: 2rem;

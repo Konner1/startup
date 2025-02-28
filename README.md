@@ -106,8 +106,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - It all works- to make sure it looks right you may need to create multiple accounts and then add friends to show that the local host stores the list
+- [x] **Hooks** - Yes i used UseEffect and UseState
 
 ## 🚀 Service deliverable
 

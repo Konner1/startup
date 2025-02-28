@@ -10,14 +10,17 @@ export function MyPage({setLoginState}) {
 
   useEffect(() => {
     const user = localStorage.getItem('loggedInUser');
-    if (user) setLoggedInUser(user);
-
-    const storedBuddies = JSON.parse(localStorage.getItem('buddiesList')) || [];
-    setBuddiesList(storedBuddies);
-
+    if (user) {
+      setLoggedInUser(user);
+  
+      const storedBuddies = JSON.parse(localStorage.getItem(`buddiesList_${user}`)) || [];
+      setBuddiesList(storedBuddies);
+    }
+  
     const storedStatus = JSON.parse(localStorage.getItem('inLibrary'));
     if (storedStatus !== null) setInLibrary(storedStatus);
   }, []);
+  
 
   const handleLogout = () => {
     localStorage.removeItem('loggedInUser');
