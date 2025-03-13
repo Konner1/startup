@@ -7,6 +7,20 @@ export function MyPage({setLoginState}) {
   const [loggedInUser, setLoggedInUser] = useState('');
   const [buddiesList, setBuddiesList] = useState([]);
   const [inLibrary, setInLibrary] = useState(false);
+  const [quote, setQuote] = useState('');
+
+
+  const fetchQuote = async () => {
+    try {
+      const response = await fetch('https://api.quotable.io/random');
+      const data = await response.json();
+      setQuote(data.content);  // Update the quote state with the fetched quote
+    } catch (error) {
+      console.error('Error fetching quote:', error);
+      setQuote('“Life is what happens when you’re busy making other plans.”'); // Fallback quote
+    }
+  };
+
 
   useEffect(() => {
     const user = localStorage.getItem('loggedInUser');
@@ -15,12 +29,22 @@ export function MyPage({setLoginState}) {
   
       const storedBuddies = JSON.parse(localStorage.getItem(`buddiesList_${user}`)) || [];
       setBuddiesList(storedBuddies);
+
+      fetch(`/api/user/${user}`)
+      .then(response => response.json())
+      .then(data => {
+        // Do something with the data, e.g., update state
+      })
+      .catch(error => console.error('Error fetching user data:', error));
+
+      fetchQuote();
+
     }
   
     const storedStatus = JSON.parse(localStorage.getItem('inLibrary'));
     if (storedStatus !== null) setInLibrary(storedStatus);
   }, []);
-  
+
 
   const handleLogout = () => {
     localStorage.removeItem('loggedInUser');
@@ -55,7 +79,7 @@ export function MyPage({setLoginState}) {
           width="150"
           height="100"
         />
-        {/* <p>My name is Konner Kinghorn and I'm studying Computer Science</p> */}
+        <p>{quote || 'Loading quote...'}</p>
 
         <div className="library-status">
           <button
