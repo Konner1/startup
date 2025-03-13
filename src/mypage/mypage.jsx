@@ -12,14 +12,22 @@ export function MyPage({setLoginState}) {
 
   const fetchQuote = async () => {
     try {
-      const response = await fetch('https://api.quotable.io/random');
-      const data = await response.json();
-      setQuote(data.content);  // Update the quote state with the fetched quote
+      const response = await fetch('https://api.quotable.io/random').then((response) => response.json()).then(setQuote(data.content));
     } catch (error) {
       console.error('Error fetching quote:', error);
-      setQuote('“Life is what happens when you’re busy making other plans.”'); // Fallback quote
+      setQuote('“Life is what happens when you’re busy making other plans.”');
     }
   };
+  React.useEffect(() => {
+
+    fetch('https://quote.cs260.click')
+      .then((response) => response.json())
+      .then((data) => {
+        setQuote(data.quote);
+        // setQuoteAuthor(data.author);
+      })
+      .catch();
+  }, []);
 
 
   useEffect(() => {
@@ -30,14 +38,14 @@ export function MyPage({setLoginState}) {
       const storedBuddies = JSON.parse(localStorage.getItem(`buddiesList_${user}`)) || [];
       setBuddiesList(storedBuddies);
 
-      fetch(`/api/user/${user}`)
+      fetch(`/api/user/${user}/buddies`)
       .then(response => response.json())
       .then(data => {
-        // Do something with the data, e.g., update state
+        setBuddiesList(data);
       })
       .catch(error => console.error('Error fetching user data:', error));
 
-      fetchQuote();
+      // fetchQuote();
 
     }
   
@@ -48,8 +56,8 @@ export function MyPage({setLoginState}) {
 
   const handleLogout = () => {
     localStorage.removeItem('loggedInUser');
-    setLoginState(false);  // Update login state
-    navigate('/');  // Redirect to login page
+    setLoginState(false); 
+    navigate('/'); 
   };
 
   const toggleLibraryStatus = (status) => {

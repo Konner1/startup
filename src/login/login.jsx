@@ -16,38 +16,53 @@ export function Login({setLogin}) {
     }
   }, [setLogin, navigate]);
 
-  const handleLogin = () => {
-    const users = JSON.parse(localStorage.getItem('allUsers')) || [];
-    const user = users.find(u => u.username === username && u.password === password);
-
-    if (user) {
-      localStorage.setItem('loggedInUser', username); // Store active session
-      setLogin(true);
-      navigate('/page');
-    } else {
-      setErrorMessage('Invalid username or password');
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('/api/auth', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', // Ensures cookies are sent
+        body: JSON.stringify({ email: username, password })
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('loggedInUser', data.email);
+        setLogin(true);
+        navigate('/page');
+      } else {
+        setErrorMessage('Invalid email or password');
+      }
+    } catch (error) {
+      setErrorMessage('Login failed. Please try again.');
     }
   };
-  const handleRegister = () => {
+  
+  const handleRegister = async () => {
     if (!username || !password) {
-      setErrorMessage('Please enter a username and password');
+      setErrorMessage('Please enter an email and password');
       return;
     }
-
-    let users = JSON.parse(localStorage.getItem('allUsers')) || [];
-
-    // Check if username already exists
-    if (users.some(u => u.username === username)) {
-      setErrorMessage('Username already exists! Please choose another.');
-      return;
+  
+    try {
+      const response = await fetch('/api/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email: username, password })
+      });
+  
+      if (response.ok) {
+        localStorage.setItem('loggedInUser', username);
+        setErrorMessage('Account created! You can now log in.');
+      } else {
+        setErrorMessage('User already exists!');
+      }
+    } catch (error) {
+      setErrorMessage('Registration failed. Please try again.');
     }
-
-    // Add new user to the array
-    users.push({ username, password });
-    localStorage.setItem('allUsers', JSON.stringify(users));
-
-    setErrorMessage('Account created! You can now log in.');
   };
+  
 
 
   return (
