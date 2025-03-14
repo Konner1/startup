@@ -7,6 +7,12 @@ const bcrypt = require('bcryptjs');
 app.use(express.json());
 app.use(cookieParser());
 
+app.use(express.static('dist'));
+
+app.get('*', (req, res) => {
+    res.sendFile(__dirname + '/dist/index.html');
+  });
+  
 const users = [];
 
 

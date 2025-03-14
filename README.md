@@ -113,11 +113,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - This part works and used the index.js to run it
+- [x] **Static middleware for frontend** - I have calls to the index.js in my front it which is chill
+- [x] **Calls to third party endpoints** - Yes! There are now random quotes for every user to enjoy
+- [x] **Backend service endpoints** - That's how I connect everything to get so they're there
+- [x] **Frontend calls service endpoints** - I also did this.
 
 ## 🚀 DB/Login deliverable
 
