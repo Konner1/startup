@@ -1,3 +1,4 @@
+const {connectDB} = require('./database');
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -12,6 +13,11 @@ app.use(express.static('dist'));
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/dist/index.html');
   });
+let db;
+connectDB().then(database => {
+  db = database;
+});
+
   
 const users = [];
 
@@ -23,14 +29,19 @@ async function createUser(email, password) {
     password: passwordHash,
   };
 
-  users.push(user);
+  const collection = db.collection('users');
+  await collection.insertOne(user);
+
+  //users.push(user);
 
   return user;
 }
 
 
 async function getUser(field, value) {
-  return users.find((user) => user[field] === value) || null;
+  const collection = db.collection('users');
+  return await collection.findOne({ [field]: value });
+  //return users.find((user) => user[field] === value) || null;
 }
 
 function setAuthCookie(res, user) {
