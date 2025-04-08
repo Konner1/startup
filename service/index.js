@@ -39,7 +39,6 @@ async function createUser(email, password) {
   const collection = db.collection('users');
   await collection.insertOne(user);
 
-  //users.push(user);
 
   return user;
 }
@@ -48,7 +47,6 @@ async function createUser(email, password) {
 async function getUser(field, value) {
   const collection = db.collection('users');
   return await collection.findOne({ [field]: value });
-  //return users.find((user) => user[field] === value) || null;
 }
 
 function setAuthCookie(res, user) {
@@ -129,8 +127,8 @@ wss.on('connection', (ws) => {
     }
 
     if (msg.type === 'status') {
-      for (const [email, client] of Object.entries(clients)) {
-        if (email !== msg.email && client.readyState === WebSocket.OPEN) {
+      for (const client of Object.values(clients)) {
+        if (client.readyState === WebSocket.OPEN) {
           client.send(JSON.stringify({
             type: 'status-update',
             email: msg.email,
