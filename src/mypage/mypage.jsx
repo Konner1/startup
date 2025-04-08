@@ -33,21 +33,21 @@ export function MyPage({setLoginState}) {
 
   useEffect(() => {
     const user = localStorage.getItem('loggedInUser');
+    setLoggedInUser(user);
   
     if (user) {
-      socket = new WebSocket('ws://localhost:4000');
+      socketRef.current = new WebSocket('ws://localhost:4000');
   
-      socket.addEventListener('open', () => {
-        socket.send(JSON.stringify({ type: 'register', email: user }));
+      socketRef.current.addEventListener('open', () => {
+        socketRef.current.send(JSON.stringify({ type: 'register', email: user }));
       });
   
-      socket.addEventListener('message', (event) => {
+      socketRef.current.addEventListener('message', (event) => {
         const msg = JSON.parse(event.data);
   
         if (msg.type === 'status-update') {
           setBuddiesList(prevList => {
             let newList = [...prevList];
-  
             if (msg.inLibrary) {
               if (!newList.includes(msg.email)) {
                 newList.push(msg.email);
@@ -55,7 +55,6 @@ export function MyPage({setLoginState}) {
             } else {
               newList = newList.filter(b => b !== msg.email);
             }
-  
             return newList;
           });
         }
@@ -63,9 +62,12 @@ export function MyPage({setLoginState}) {
     }
   
     return () => {
-      if (socket) socket.close();
+      if (socketRef.current) {
+        socketRef.current.close();
+      }
     };
   }, []);
+  
 
 
   const handleLogout = () => {
