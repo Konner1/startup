@@ -133,8 +133,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - This works- I tested for it. 
+- [x] **Frontend makes WebSocket connection** - This also works becuase the website updates.
+- [x] **Data sent over WebSocket connection** - Yea this one work (and yes it did give me a headache to figure out)
+- [x] **WebSocket data displayed** - So you can see which of your buddies are in the library. When you click the "in library" button you'll pop up below to yourself and everyone else.
+- [x] **Application is fully functional** - Yup! It works. 
