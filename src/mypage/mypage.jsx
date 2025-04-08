@@ -80,10 +80,12 @@ export function MyPage({setLoginState}) {
     setInLibrary(status);
     localStorage.setItem('inLibrary', JSON.stringify(status));
   
-    if (socket && socket.readyState === WebSocket.OPEN) {
-      socket.send(JSON.stringify({
+    const email = localStorage.getItem('loggedInUser');
+  
+    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+      socketRef.current.send(JSON.stringify({
         type: 'status',
-        email: loggedInUser,
+        email,
         inLibrary: status
       }));
     }
