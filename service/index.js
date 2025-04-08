@@ -112,7 +112,7 @@ app.get('/api/user/me', async (req, res) => {
 });
 
 const port = 4000;
-server.listen(port, () => {
+server.listen(port, '0.0.0.0', () => {
   console.log(`HTTP & WS server listening on port ${port}`);
 });
 
