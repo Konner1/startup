@@ -12,7 +12,7 @@ export function MyPage({setLoginState}) {
 
   const fetchQuote = async () => {
     try {
-      const response = await fetch('https://api.quotable.io/random').then((response) => response.json()).then(setQuote(data.content));
+      const response = await fetch('https://api.quotable.io/random').then((response) => response.json()).then((data) => setQuote(data.content));
     } catch (error) {
       console.error('Error fetching quote:', error);
       setQuote('“Life is what happens when you’re busy making other plans.”');
