@@ -24,7 +24,6 @@ export function MyPage({setLoginState}) {
       .then((response) => response.json())
       .then((data) => {
         setQuote(data.quote);
-        // setQuoteAuthor(data.author);
       })
       .catch();
   }, []);
