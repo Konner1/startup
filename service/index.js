@@ -28,7 +28,6 @@ connectDB().then(database => {
   
 const users = [];
 
-
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
   const user = {
@@ -39,10 +38,8 @@ async function createUser(email, password) {
   const collection = db.collection('users');
   await collection.insertOne(user);
 
-
   return user;
 }
-
 
 async function getUser(field, value) {
   const collection = db.collection('users');
@@ -63,7 +60,6 @@ function clearAuthCookie(res, user) {
   res.clearCookie('token');
 }
 
-
 app.post('/api/auth', async (req, res) => {
   if (await getUser('email', req.body.email)) {
     res.status(409).send({ msg: 'Existing user' }); 
@@ -75,10 +71,8 @@ app.post('/api/auth', async (req, res) => {
   }
 });
 
-
 app.put('/api/auth', async (req, res) => {
   const user = await getUser('email', req.body.email);
-
 
   if (user && (await bcrypt.compare(req.body.password, user.password))) {
     setAuthCookie(res, user); 
@@ -87,7 +81,6 @@ app.put('/api/auth', async (req, res) => {
     res.status(401).send({ msg: 'Unauthorized' });
   }
 });
-
 
 app.delete('/api/auth', async (req, res) => {
   const token = req.cookies['token'];
@@ -98,7 +91,6 @@ app.delete('/api/auth', async (req, res) => {
 
   res.send({});
 });
-
 
 app.get('/api/user/me', async (req, res) => {
   const token = req.cookies['token'];
@@ -115,7 +107,6 @@ const port = 4000;
 server.listen(port, '0.0.0.0', () => {
   console.log(`HTTP & WS server listening on port ${port}`);
 });
-
 
 let clients = {};
 wss.on('connection', (ws) => {
