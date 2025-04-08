@@ -127,7 +127,7 @@ wss.on('connection', (ws) => {
     }
 
     if (msg.type === 'status') {
-      for (const client of Object.values(clients)) {
+      for (const [email, client] of Object.entries(clients)) {
         if (client.readyState === WebSocket.OPEN) {
           client.send(JSON.stringify({
             type: 'status-update',
@@ -137,6 +137,7 @@ wss.on('connection', (ws) => {
         }
       }
     }
+    
   });
 
   ws.on('close', () => {
