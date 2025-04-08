@@ -4,10 +4,16 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const uuid = require('uuid');
 const bcrypt = require('bcryptjs');
+const http = require('http');
+const WebSocket = require('ws');
 app.use(express.static('public'));
+
 
 app.use(express.json());
 app.use(cookieParser());
+
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
 
 app.use(express.static('dist'));
 
@@ -108,7 +114,39 @@ app.get('/api/user/me', async (req, res) => {
 });
 
 const port = 4000;
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
+server.listen(port, () => {
+  console.log(`HTTP & WS server listening on port ${port}`);
+});
+
+
+let clients = {};
+wss.on('connection', (ws) => {
+  ws.on('message', (data) => {
+    const msg = JSON.parse(data);
+
+    if (msg.type === 'register') {
+      clients[msg.email] = ws;
+    }
+
+    if (msg.type === 'status') {
+      for (const [email, client] of Object.entries(clients)) {
+        if (email !== msg.email && client.readyState === WebSocket.OPEN) {
+          client.send(JSON.stringify({
+            type: 'status-update',
+            email: msg.email,
+            inLibrary: msg.inLibrary
+          }));
+        }
+      }
+    }
+  });
+
+  ws.on('close', () => {
+    for (const [email, socket] of Object.entries(clients)) {
+      if (socket === ws) {
+        delete clients[email];
+      }
+    }
+  });
 });
 

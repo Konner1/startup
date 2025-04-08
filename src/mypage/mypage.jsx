@@ -29,28 +29,42 @@ export function MyPage({setLoginState}) {
       .catch();
   }, []);
 
+  let socket;
 
   useEffect(() => {
     const user = localStorage.getItem('loggedInUser');
-    if (user) {
-      setLoggedInUser(user);
   
-      const storedBuddies = JSON.parse(localStorage.getItem(`buddiesList_${user}`)) || [];
-      setBuddiesList(storedBuddies);
-
-      fetch(`/api/user/${user}/buddies`)
-      .then(response => response.json())
-      .then(data => {
-        setBuddiesList(data);
-      })
-      .catch(error => console.error('Error fetching user data:', error));
-
-      // fetchQuote();
-
+    if (user) {
+      socket = new WebSocket('ws://localhost:4000');
+  
+      socket.addEventListener('open', () => {
+        socket.send(JSON.stringify({ type: 'register', email: user }));
+      });
+  
+      socket.addEventListener('message', (event) => {
+        const msg = JSON.parse(event.data);
+  
+        if (msg.type === 'status-update') {
+          setBuddiesList(prevList => {
+            let newList = [...prevList];
+  
+            if (msg.inLibrary) {
+              if (!newList.includes(msg.email)) {
+                newList.push(msg.email);
+              }
+            } else {
+              newList = newList.filter(b => b !== msg.email);
+            }
+  
+            return newList;
+          });
+        }
+      });
     }
   
-    const storedStatus = JSON.parse(localStorage.getItem('inLibrary'));
-    if (storedStatus !== null) setInLibrary(storedStatus);
+    return () => {
+      if (socket) socket.close();
+    };
   }, []);
 
 
@@ -63,6 +77,14 @@ export function MyPage({setLoginState}) {
   const toggleLibraryStatus = (status) => {
     setInLibrary(status);
     localStorage.setItem('inLibrary', JSON.stringify(status));
+  
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.send(JSON.stringify({
+        type: 'status',
+        email: loggedInUser,
+        inLibrary: status
+      }));
+    }
   };
 
   return (
