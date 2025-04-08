@@ -29,7 +29,7 @@ export function MyPage({setLoginState}) {
       .catch();
   }, []);
 
-  let socket;
+  const socketRef = React.useRef(null);
 
   useEffect(() => {
     const user = localStorage.getItem('loggedInUser');
