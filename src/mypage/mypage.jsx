@@ -35,7 +35,11 @@ export function MyPage({setLoginState}) {
     setLoggedInUser(user);
   
     if (user) {
-      socketRef.current = new WebSocket('ws://localhost:4000');
+      const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+      const hostname = window.location.hostname;
+      const wsUrl = `${protocol}://${hostname}:4000`;
+  
+      socketRef.current = new WebSocket(wsUrl);
   
       socketRef.current.addEventListener('open', () => {
         socketRef.current.send(JSON.stringify({ type: 'register', email: user }));
@@ -67,7 +71,7 @@ export function MyPage({setLoginState}) {
     };
   }, []);
   
-
+  
 
   const handleLogout = () => {
     localStorage.removeItem('loggedInUser');
