@@ -36,14 +36,8 @@ export function MyPage({setLoginState}) {
 
     setLoggedInUser(user);
 
-    // LOCAL DEV VERSION
-    // const socket = new WebSocket('ws://localhost:4000');
     const socket = new WebSocket('wss://startup.libbuddies.click');
 
-    // DEPLOYMENT VERSION (when ready):
-    // const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-    // const hostname = window.location.hostname;
-    // const socket = new WebSocket(`${protocol}://${hostname}:4000`);
 
     socketRef.current = socket;
 
