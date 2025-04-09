@@ -34,11 +34,8 @@ export function MyPage({setLoginState}) {
     const user = localStorage.getItem('loggedInUser');
     setLoggedInUser(user);
   
-    if (user) {
-      const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-      const hostname = window.location.hostname;
-      const wsUrl = `${protocol}://${hostname}:4000`;
-  
+    const connectWebSocket = () => {
+      const wsUrl = process.env.REACT_APP_WS_URL || 'wss://your-production-domain/ws';
       socketRef.current = new WebSocket(wsUrl);
   
       socketRef.current.addEventListener('open', () => {
@@ -47,29 +44,39 @@ export function MyPage({setLoginState}) {
   
       socketRef.current.addEventListener('message', (event) => {
         const msg = JSON.parse(event.data);
-  
         if (msg.type === 'status-update') {
-          setBuddiesList(prevList => {
+          setBuddiesList((prevList) => {
             let newList = [...prevList];
             if (msg.inLibrary) {
               if (!newList.includes(msg.email)) {
                 newList.push(msg.email);
               }
             } else {
-              newList = newList.filter(b => b !== msg.email);
+              newList = newList.filter((b) => b !== msg.email);
             }
             return newList;
           });
         }
       });
-    }
+  
+      socketRef.current.addEventListener('close', () => {
+        console.log('WebSocket closed. Reconnecting...');
+        setTimeout(connectWebSocket, 5000); // Retry after 5 seconds
+      });
+  
+      socketRef.current.addEventListener('error', (error) => {
+        console.error('WebSocket error:', error);
+        socketRef.current.close();
+      });
+    };
+  
+    if (user) connectWebSocket();
   
     return () => {
-      if (socketRef.current) {
-        socketRef.current.close();
-      }
+      if (socketRef.current) socketRef.current.close();
     };
   }, []);
+  
   
   
 
