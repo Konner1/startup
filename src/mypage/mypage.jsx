@@ -32,50 +32,57 @@ export function MyPage({setLoginState}) {
 
   useEffect(() => {
     const user = localStorage.getItem('loggedInUser');
+    if (!user) return;
+
     setLoggedInUser(user);
-  
-    const connectWebSocket = () => {
-      const wsUrl = process.env.REACT_APP_WS_URL || 'wss://your-production-domain/ws';
-      socketRef.current = new WebSocket(wsUrl);
-  
-      socketRef.current.addEventListener('open', () => {
-        socketRef.current.send(JSON.stringify({ type: 'register', email: user }));
-      });
-  
-      socketRef.current.addEventListener('message', (event) => {
-        const msg = JSON.parse(event.data);
-        if (msg.type === 'status-update') {
-          setBuddiesList((prevList) => {
-            let newList = [...prevList];
-            if (msg.inLibrary) {
-              if (!newList.includes(msg.email)) {
-                newList.push(msg.email);
-              }
-            } else {
-              newList = newList.filter((b) => b !== msg.email);
-            }
-            return newList;
-          });
-        }
-      });
-  
-      socketRef.current.addEventListener('close', () => {
-        console.log('WebSocket closed. Reconnecting...');
-        setTimeout(connectWebSocket, 5000); // Retry after 5 seconds
-      });
-  
-      socketRef.current.addEventListener('error', (error) => {
-        console.error('WebSocket error:', error);
-        socketRef.current.close();
-      });
-    };
-  
-    if (user) connectWebSocket();
-  
+
+    // LOCAL DEV VERSION
+    // const socket = new WebSocket('ws://localhost:4000');
+    const socket = new WebSocket('wss://startup.libbuddies.click');
+
+    // DEPLOYMENT VERSION (when ready):
+    // const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+    // const hostname = window.location.hostname;
+    // const socket = new WebSocket(`${protocol}://${hostname}:4000`);
+
+    socketRef.current = socket;
+
+    socket.addEventListener('open', () => {
+      console.log('✅ WebSocket connected');
+      socket.send(JSON.stringify({ type: 'register', email: user }));
+    });
+
+    socket.addEventListener('message', (event) => {
+      const msg = JSON.parse(event.data);
+      console.log('📩 Message from server:', msg);
+
+      if (msg.type === 'status-update') {
+        setBuddiesList(prevList => {
+          let newList = [...prevList];
+          if (msg.inLibrary && !newList.includes(msg.email)) {
+            newList.push(msg.email);
+          } else if (!msg.inLibrary) {
+            newList = newList.filter(b => b !== msg.email);
+          }
+          return newList;
+        });
+      }
+    });
+
+    socket.addEventListener('error', (err) => {
+      console.error('❌ WebSocket error:', err);
+    });
+
+    socket.addEventListener('close', () => {
+      console.warn('⚠️ WebSocket closed');
+    });
+
     return () => {
-      if (socketRef.current) socketRef.current.close();
+      socket.close();
     };
   }, []);
+  
+  
   
   
   
